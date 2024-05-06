@@ -1,0 +1,16 @@
+I was able to set the segment base addresses and sizes to ensure the validity of all addresses.
+I saw that the addresses were mainly divided in 3 groups: the first one with small addresses, the second one with 10 digits long addresses starting with 1 and the third one with 10 digits long addresses starting with 2.
+I set the base of the heap to the address 0 since it was the first block of memory. 
+Then I looked at the ending address of the first block of addresses.
+It was 0x8000. I got that from output of the terminal when running the program.
+I understood that the first block should have spread from 0x0 until 0x8000. So i just converted 0x8000 into decimal (32768).
+Therefore I set the size of the first block to 32768. 
+Then the base address of the second block (the code) is 1073741824 (which is  0x40000000 converted to decimal), because it is the first address of the second group.
+The size should have been the same as above because the code goes from 0x40000000 until 0x40008000. 
+As a matter of fact I set the size again to 32768 since 0x40000000 - 0x40008000 = 8000 ( 32768 converted in decimal).
+The stack instead goes from 0x80000000 until 0x80007fff. Therefore I put 2147483648 as base address (0x8000000 converted to decimal).
+I put 32767 as the size (0x80000000 - 0x80007fff converted to decimal).
+It is important to properly configure memory segments in an application in order to make programs running smoothly and to avoid segmentation faults errors while reducing OS overheads.
+Understanding segmentation can help the OS not to fill the physical memory with unused virtual address space. 
+Segmentation fault errors happen when an illlegal address is accessed on a segmented machine. Using the segmentation in a proper way is necessary to avoid this kind of errors.
+While on a segmetned machine it is fundamental to deal and to avoid and limit (when possible) external fragmentation.
