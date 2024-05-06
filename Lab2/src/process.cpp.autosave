@@ -1,0 +1,43 @@
+#include <process.hpp>
+
+#include <iostream>
+#include <sstream>
+#include <sys/wait.h>
+#include <unistd.h>
+
+namespace cse4733 {
+
+    process::process(const std::string& path, const std::vector<std::string>& args)
+        : processId(-1), executablePath(path), arguments(args) {}
+
+    bool process::execute() {
+        // TODO
+        // 1. Fork the parent process to create a child process.
+        // 2. If the fork fails, display an error message and exit.
+        // 3. If the fork succeeds, continue with the parent and child processes.
+        // 4. In the parent process:
+        //    - Display the parent process ID (PID).
+        //    - Display the child's PID.
+        //    - Display a message indicating the role as "Parent".
+        //    - Wait for the child process to terminate using the wait() system call.
+        //    - Display a message indicating the termination of the child process.
+        //    - Exit the parent process.
+        // 5    . In the child process:
+        //    - Display the child's PID.
+        //    - Display the parent's PID.
+        //    - Display a message indicating the role as "Child".
+        //    - Sleep for a few seconds using the sleep() system call.
+        //    - Exit the child process.
+        return true;
+    }
+
+    void process::wait() {
+      int status;
+      waitpid(processId, &status, 0);
+    }
+
+pid_t process::get_id() const {
+	return this->processId;
+}
+
+} // namespace cse4733
